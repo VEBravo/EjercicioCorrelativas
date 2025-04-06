@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Alumno "1" *-- "*" Inscripcion
+Inscripcion "*" o--	"*" Materia
+Materia "*" <-- "*" Alumno
+Materia "*" <-- Materia
+
+class Materia{
+   -idMateria: String
+   -correlativas: List<Materia>
+   +cumpleCorrelativas(alumno Alumno): Boolean
+}
+
+class Alumno{
+    -legajo: String
+    -materias: List<Materia>
+    -inscripciones: List<Inscripcion>
+    +aprobada(materia: Materia): Boolean
+}
+
+class Inscripcion{
+    -idInscripcion: String
+    -alumno: Alumno
+    -materia: List<Materia>
+    +aprobada(): Boolean
+}
+
+@enduml
